@@ -1,0 +1,21 @@
+{
+  "name": "spotify-play-now",
+  "version": "1.0.0",
+  "description": "Export Spotify Currently Playing To Text File.",
+  "main": "index.ts",
+  "repository": "https://github.com/oknoorap/spotify-play-now.git",
+  "author": "Ribhararnus Pracutian <oknoorap@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.json"
+  },
+  "bin": {
+    "spotify-play-now": "./bin/index.js"
+  },
+  "files": [
+    "./bin/index.js"
+  ]
+}
