@@ -4,6 +4,7 @@ import open from "open";
 import { info, error } from "../utils/logger";
 
 const EP_TOKEN_URL = "https://accounts.spotify.com/api/token";
+
 const EP_CURRENTLY_URL =
   "https://api.spotify.com/v1/me/player/currently-playing";
 
@@ -22,7 +23,6 @@ interface ISpotifyAPIWrapper {
   instance: SpotifyWebApi;
   credentials: ISpotifyCredentials;
 }
-
 interface IPlayback {
   time?: number;
   at?: number;
@@ -30,6 +30,7 @@ interface IPlayback {
   song?: string;
   album?: string;
   singer?: string;
+  playing?: boolean;
 }
 
 class Spotify implements ISpotifyAPIWrapper {
@@ -67,7 +68,7 @@ class Spotify implements ISpotifyAPIWrapper {
    * Set authorizatio code.
    * @param authorizeCode
    */
-  setCode(authorizeCode: string) {
+  setAuthorizeCode(authorizeCode: string) {
     this.authorizeCode = authorizeCode;
   }
 
@@ -154,7 +155,7 @@ class Spotify implements ISpotifyAPIWrapper {
   /**
    * Get playback info.
    */
-  async getPlaybackInfo() {
+  async getPlaybackInfo(): Promise<IPlayback> {
     let json;
 
     try {
@@ -164,17 +165,25 @@ class Spotify implements ISpotifyAPIWrapper {
       const {
         timestamp: time,
         progress_ms: at,
-        item: {
-          duration_ms: duration,
-          name: song,
-          album: { name: album },
-          artists
-        }
+        currently_playing_type: type,
+        item,
+        is_playing: playing
       } = json;
 
-      const singer = artists.map(item => item.name).join(", ");
+      if (type !== "track") {
+        return {
+          playing: false
+        };
+      }
 
-      info(`${song} - ${album} by ${singer}`);
+      const {
+        duration_ms: duration,
+        name: song,
+        album: { name: album },
+        artists
+      } = item;
+
+      const singer = artists.map(item => item.name).join(", ");
 
       return {
         time,
@@ -182,7 +191,8 @@ class Spotify implements ISpotifyAPIWrapper {
         duration,
         song,
         album,
-        singer
+        singer,
+        playing
       };
     } catch (err) {
       error(`Error or not playing. Response: ${JSON.stringify(json)}`);
