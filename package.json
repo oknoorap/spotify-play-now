@@ -7,15 +7,26 @@
   "author": "Ribhararnus Pracutian <oknoorap@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^12.12.14",
+    "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "tsc --build tsconfig.json"
+    "build": "tsc --build tsconfig.json",
+    "start": "ts-node src/index"
   },
   "bin": {
     "spotify-play-now": "./bin/index.js"
   },
   "files": [
     "./bin/index.js"
-  ]
+  ],
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "fastify": "^2.10.0",
+    "node-fetch": "^2.6.0",
+    "open": "^7.0.0",
+    "spotify-web-api-node": "^4.0.0",
+    "yargs": "^15.0.2"
+  }
 }
