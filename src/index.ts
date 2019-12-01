@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { existsSync } from "fs";
 import { argv } from "yargs";
 import fastify from "fastify";
