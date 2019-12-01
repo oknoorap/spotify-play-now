@@ -50,7 +50,8 @@ server.get("/", async (request, reply) => {
     });
 
     // Refetch when song finish.
-    // Or check every 60 seconds / 1 minute.
+    // Or check every 45 seconds.
+    // To check if user pause or internet connection.
     refetcher.run(async () => {
       const cachedInfo = { ...refetcher.info };
 
@@ -67,7 +68,7 @@ server.get("/", async (request, reply) => {
         info(status);
         fileWriter(out, status);
       }
-    }, 60 * 1000);
+    }, 45 * 1000);
   }
 
   reply.type("text/html");
