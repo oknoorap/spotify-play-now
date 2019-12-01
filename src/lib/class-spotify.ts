@@ -1,7 +1,7 @@
 import SpotifyWebApi from "spotify-web-api-node";
 import fetch from "node-fetch";
 import open from "open";
-import { info, error } from "./utils/logger";
+import { info, error } from "../utils/logger";
 
 const EP_TOKEN_URL = "https://accounts.spotify.com/api/token";
 const EP_CURRENTLY_URL =
