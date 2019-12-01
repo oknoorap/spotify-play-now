@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "amd",
-    "outFile": "bin/spotify-play-now.js"
-  }
-}

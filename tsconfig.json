@@ -4,9 +4,10 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "sourceMap": false,
-    "allowJs": true,
+    "allowJs": false,
     "lib": ["es6", "dom"],
     "rootDir": "./src",
+    "outDir": "dist",
     "moduleResolution": "node"
   }
 }
