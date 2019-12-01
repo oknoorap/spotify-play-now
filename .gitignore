@@ -105,5 +105,4 @@ dist
 
 # Custom
 package-lock.json
-bin/
 dist/
