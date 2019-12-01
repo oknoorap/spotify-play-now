@@ -21,6 +21,7 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "fastify": "^2.10.0",
+    "mkdirp": "^0.5.1",
     "node-fetch": "^2.6.0",
     "open": "^7.0.0",
     "spotify-web-api-node": "^4.0.0",
