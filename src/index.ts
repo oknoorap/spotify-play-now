@@ -5,6 +5,7 @@ import fastify from "fastify";
 import Spotify from "./lib/class-spotify";
 import Refetcher from "./lib/class-refetcher";
 import { error, info } from "./utils/logger";
+import fileWriter from "./utils/writer";
 
 const { id: clientId, secret: clientSecret, out, port } = argv;
 
@@ -45,7 +46,6 @@ server.get("/", async (request, reply) => {
       const remaining = Math.ceil((endTime - now) / 1000);
       const isEnded = remaining === -2;
 
-      // info({ isEnded, remaining });
       return isEnded;
     });
 
@@ -59,11 +59,13 @@ server.get("/", async (request, reply) => {
 
       const { song, album, singer, playing } = refetcher.info;
       if (!playing) {
-        // Write file
+        fileWriter(out, "Not Playing");
       }
 
       if (playing && cachedInfo.song !== song && cachedInfo.album !== album) {
-        info(`${song} - ${album} by ${singer}`);
+        const status = `${song} - ${album} by ${singer}`;
+        info(status);
+        fileWriter(out, status);
       }
     }, 60 * 1000);
   }
