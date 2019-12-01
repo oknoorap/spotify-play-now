@@ -12,14 +12,14 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc --build tsconfig.build.json",
     "start": "ts-node src/index"
   },
   "bin": {
     "spotify-play-now": "./bin/index.js"
   },
   "files": [
-    "./bin/index.js"
+    "./bin/spotify-play-now.js"
   ],
   "dependencies": {
     "chalk": "^3.0.0",
